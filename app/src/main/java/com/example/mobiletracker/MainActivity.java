@@ -72,6 +72,8 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     TextView longitude;
     TextView latitude;
 
+    Button playButton;
+
     Chronometer timer;
 
     // Recording
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
         dbMeter = findViewById(R.id.decibelMeter);
         longitude = findViewById(R.id.longitude);
         latitude = findViewById(R.id.latitude);
+        playButton = findViewById(R.id.playButton);
 
         // Check if mic is present
         if (isMicrophonePresent()) {
@@ -130,8 +133,9 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
     }
 
 
-    // Recording function. Press button to start recording and stops automatically after X amount of time.
 
+
+    // Recording function. Press button to start recording and stops automatically after X amount of time.
     public void onButtonRecordPressed(View v) {
 
         /* Get Location (Long and Lat) */
@@ -220,13 +224,15 @@ public class MainActivity extends AppCompatActivity implements LocationListener 
                                     @Override
                                     public void onFailure(Call<Sample> call, Throwable t) {
                                         Toast.makeText(MainActivity.this, "Post Failed", Toast.LENGTH_SHORT).show();
+                                        System.out.println("Call: " + call);
+                                        System.out.println("T: " + t);
                                     }
                                 });
                     } catch (Exception e) {
 
                     }
                 }
-            }, 5001);
+            }, 10001);
 
         } catch (Exception e) {
 
